@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simpleapp1
+  name: simpleapp-1
   labels:
     app: simplaeapp
-specs:
+spec:
   replicaset: 3
   selector:
     matchlabels:
@@ -16,7 +16,7 @@ specs:
     metadata:
       labels:
         app: simpleapp
-    specs:
+    spec:
       containers:
         - name: simplaeapp-container
           image: myacrtest0901.azurecr.io/simpleapp
@@ -29,7 +29,7 @@ kind: Service
 metadata:
   labels:
     app: simpleapp
-specs:
+spec:
   type: loadbalancer
   ports:
     - name: https
