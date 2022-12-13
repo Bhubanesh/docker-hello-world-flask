@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: simplaeapp-container
-          image: myacrtest0901.azurecr.io/simpleapp
+          image: ngnix:latest
           ports:
             - containerPort: 8080
 
