@@ -37,7 +37,7 @@ stages:
   displayName: Deploy to dev
   dependsOn: build
   variables:
-     acrsecret: k8registryconnectionauth
+     acrsecret: myacrtest0901auth
   jobs: 
     - job: Depoy
       displayName: Deplot to AKS
