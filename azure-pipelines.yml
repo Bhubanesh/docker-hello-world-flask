@@ -5,7 +5,7 @@ resources:
 - repo: self
 
 variables:
-  imageRepo: pythonapp
+  imageRepo: pythonappTest
   tag: '$(Build.BuildId)'
 
 stages:
@@ -20,7 +20,7 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        containerRegistry: 'myacrtest0901'
+        containerRegistry: 'docker_registry_connection'
         repository: '$(imageRepo)'
         command: 'buildAndPush'
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
