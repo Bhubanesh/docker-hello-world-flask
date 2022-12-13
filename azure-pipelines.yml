@@ -88,8 +88,9 @@ stages:
            useConfigurationFile: true
            configuration: '$(Pipeline.Workspace)/drop/deployment.yml'
            secretType: 'dockerRegistry'
-           containerRegistryType: 'Container Registry'
-           dockerRegistryEndpoint: 'myacrtest0901'
+           containerRegistryType: 'Azure Container Registry'
+           azureSubscriptionEndpointForSecrets: 'Pay-As-You-Go(2250106f-0c57-412b-97f0-e06ef5b7cb60)'
+           azureContainerRegistry: 'myacrtest0901.azurecr.io'
            secretName: 'k8exampleacrauth'
            
          
