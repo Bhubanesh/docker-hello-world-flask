@@ -1,7 +1,9 @@
 apiVersion: app/v1
 kind: Deployment
 metadata: 
-   name: simpleapp
+   name: simpleapp1
+   labels:
+      app: simpleapp
 specs:
   replicaset: 3
   selector:
@@ -15,7 +17,7 @@ specs:
         app: simpleapp
       specs:
         container: 
-            - name: simplaeapp
+            - name: simplaeapp-container
               image: myacrtest0901.azurecr.io/simpleapp
               ports:
                 - containerPort: 8080
