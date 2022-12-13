@@ -8,7 +8,7 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchlabels:
+    matchLabels:
       app: simpleapp
   template:
     metadata:
@@ -35,5 +35,5 @@ spec:
       protocol: tcp
       targetPort: 8080
       selector:
-        matchlabels:
+        matchLabels:
           app: simplaeapp
