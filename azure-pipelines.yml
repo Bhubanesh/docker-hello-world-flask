@@ -33,18 +33,34 @@ stages:
         artifact: 'drop'
         publishLocation: 'pipeline'
 
-# - stage: Deploy
-#   displayName: Deploy to dev
-#   dependsOn: build
-#   jobs: 
-#     - job: Depoy
-#       displayName: Deplot to AKS
-#       pool: 
-#         vmimage: ubuntu-latest
-#       steps: 
-#          - task: DownloadPipelineArtifact@2
-#            inputs:
-#              buildType: 'current'
-#              artifactName: 'drop'
-#              targetPath: '$(Pipeline.Workspace)/drop'
+- stage: Deploy
+  displayName: Deploy to dev
+  dependsOn: build
+  variables:
+     acrsecret: docker_registry_connectionauth
+  jobs: 
+    - job: Depoy
+      displayName: Deplot to AKS
+      pool: 
+        vmimage: ubuntu-latest
+      steps: 
+         - task: DownloadPipelineArtifact@2
+           inputs:
+             buildType: 'current'
+             artifactName: 'drop'
+             targetPath: '$(Pipeline.Workspace)/drop'
+         - task: KubernetesManifest@0
+           inputs:
+             action: 'createSecret'
+             kubernetesServiceConnection: 'k8connection'
+             namespace: 'default'
+             secretType: 'dockerRegistry'
+             secretName: '$(acrsecret)'
+             dockerRegistryEndpoint: 'docker_registry_connection'
+         - task: KubernetesManifest@0
+           inputs:
+             action: 'deploy'
+             kubernetesServiceConnection: 'k8connection'
+             namespace: 'default'
+             manifests: $(Pipeline.Workspace)/drop/deployment.yml
          
