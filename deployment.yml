@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: simpleapp-4
   labels:
-    app: simplaeapp
+    app: simpleapp
 spec:
   replicas: 3
   selector:
