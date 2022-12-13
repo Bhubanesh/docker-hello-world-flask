@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simpleapp-1
+  name: simpleapp-2
   labels:
     app: simplaeapp
 spec:
