@@ -70,14 +70,7 @@ stages:
            secretType: 'dockerRegistry'
            secretName: k8exampleacrauth
            dockerRegistryEndpoint: 'Docker_connection'
-           
-         
-       - task: KubernetesManifest@0
-         inputs:
-            action: 'deploy'
-            kubernetesServiceConnection: 'Cluster_connection'
-            namespace: 'default'
-            manifests: $(Pipeline.Workspace)/drop/deployment.yml
+        
        - task: Kubernetes@1
          inputs:
            connectionType: 'Kubernetes Service Connection'
@@ -87,7 +80,16 @@ stages:
            useConfigurationFile: true
            configuration: '$(Pipeline.Workspace)/drop/deployment.yml'
            secretType: 'dockerRegistry'
-           containerRegistryType: 'Azure Container Registry'
+           containerRegistryType: 'Azure Container Registry'     
+           
+         
+       - task: KubernetesManifest@0
+         inputs:
+            action: 'deploy'
+            kubernetesServiceConnection: 'Cluster_connection'
+            namespace: 'default'
+            manifests: $(Pipeline.Workspace)/drop/deployment.yml
+      
 
           
         
