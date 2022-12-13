@@ -28,7 +28,7 @@ stages:
           latest
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: '$(Pipeline.Workspace)/app'
+        targetPath: '$(Pipeline.Workspace)/docker-hello-world-flask'
         artifact: 'drop'
         publishLocation: 'pipeline'          
 
