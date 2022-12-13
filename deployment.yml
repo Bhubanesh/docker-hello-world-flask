@@ -26,15 +26,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: k8-service
   labels:
     app: simpleapp
 spec:
-  type: loadbalancer
+  type: loadBalancer
   ports:
     - name: https
       port: 80
       protocol: tcp
       targetPort: 8080
-      selector:
-         app: simpleapp
+  selector:
+      app: simpleapp
 
