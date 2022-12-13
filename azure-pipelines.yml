@@ -62,12 +62,12 @@ stages:
  
        - task: KubernetesManifest@0
          inputs:
-              action: 'createSecret'
-              kubernetesServiceConnection: 'Cluster_connection'
-              namespace: 'default'
-              secretType: 'dockerRegistry'
-              secretName: '$(acrsecret)'
-              dockerRegistryEndpoint: 'myacrtest0901'
+           action: 'createSecret'
+           kubernetesServiceConnection: 'Cluster_connection'
+           namespace: 'default'
+           secretType: 'dockerRegistry'
+           secretName: '$(acrsecret)'
+           dockerRegistryEndpoint: 'Docker_connection'
 
        - task: KubernetesManifest@0
          inputs:
