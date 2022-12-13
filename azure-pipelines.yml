@@ -36,8 +36,8 @@ stages:
 - stage: Deploy
   displayName: Deploy to dev
   dependsOn: build
-  variables:
-     acrsecret: myacrtest0901auth
+  # variables:
+  #    acrsecret: myacrtest0901auth
   jobs: 
     - job: Depoy
       displayName: Deplot to AKS
@@ -49,14 +49,14 @@ stages:
              buildType: 'current'
              artifactName: 'drop'
              targetPath: '$(Pipeline.Workspace)/drop'
-         - task: KubernetesManifest@0
-           inputs:
-             action: 'createSecret'
-             kubernetesServiceConnection: 'k8connection'
-             namespace: 'default'
-             secretType: 'dockerRegistry'
-             secretName: '$(acrsecret)'
-             dockerRegistryEndpoint: 'K8RegistryConnection'
+        #  - task: KubernetesManifest@0
+        #    inputs:
+        #      action: 'createSecret'
+        #      kubernetesServiceConnection: 'k8connection'
+        #      namespace: 'default'
+        #      secretType: 'dockerRegistry'
+        #      secretName: '$(acrsecret)'
+        #      dockerRegistryEndpoint: 'K8RegistryConnection'
          - task: KubernetesManifest@0
            inputs:
              action: 'deploy'
