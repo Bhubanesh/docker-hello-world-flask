@@ -70,6 +70,14 @@ stages:
            secretType: 'dockerRegistry'
            secretName: k8exampleacrauth
            dockerRegistryEndpoint: 'Docker_connection'
+
+       
+       - task: KubernetesManifest@0
+         inputs:
+            action: 'deploy'
+            kubernetesServiceConnection: 'Cluster_connection'
+            namespace: 'default'
+            manifests: $(Pipeline.Workspace)/drop/deployment.yml    
         
        - task: Kubernetes@1
          inputs:
@@ -86,12 +94,6 @@ stages:
            secretName: 'k8exampleacrauth'
            
          
-       - task: KubernetesManifest@0
-         inputs:
-            action: 'deploy'
-            kubernetesServiceConnection: 'Cluster_connection'
-            namespace: 'default'
-            manifests: $(Pipeline.Workspace)/drop/deployment.yml
       
 
           
