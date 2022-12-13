@@ -28,7 +28,7 @@ stages:
           latest
     - task: PublishPipelineArtifact@1
       inputs:
-        targetPath: '$(Pipeline.Workspace)/s/app'
+        targetPath: '$(Pipeline.Workspace)/app'
         artifact: 'drop'
         publishLocation: 'pipeline'          
 
@@ -47,7 +47,7 @@ stages:
         inputs:
           buildType: 'current'
           artifactName: 'drop'
-          targetPath: '$(Pipeline.Workspace)/s/drop'
+          targetPath: '$(Pipeline.Workspace)/drop'
       - task: KubernetesManifest@0
         inputs:
           action: 'createSecret'
