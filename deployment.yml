@@ -1,41 +1,15 @@
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: simpleapp1
+  name: MyPod
   labels:
     app: simplaeapp
 specs:
-  replicaset: 3
-  selector:
-    matchlabels:
-      app: simpleapp
-  ports:
-    - port: 80
-  template:
-    metadata:
-      labels:
-        app: simpleapp
-    specs:
-      containers:
-        - name: simplaeapp-container
-          image: myacrtest0901.azurecr.io/simpleapp
-          ports:
-            - containerPort: 8080
+  containers:
+  - name: simplaeapp-container
+    image: myacrtest0901.azurecr.io/simpleapp
+    ports:
+      - containerPort: 8080
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: simpleapp
-specs:
-  type: loadbalancer
-  ports:
-    - name: https
-      port: 80
-      protocol: tcp
-      targetPort: 8080
-      selector:
-        matchlabels:
-          app: simplaeapp
+
