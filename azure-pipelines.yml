@@ -45,6 +45,9 @@ stages:
 - stage: Deploy
   displayName: Deploy to AkS
   dependsOn: Build
+  variables:
+     acresecret: k8exampleacrauth
+
   jobs:
     - job: Deploy 
       displayName: Deploy to AKS
@@ -56,5 +59,21 @@ stages:
             buildType: 'current'
             artifactName: 'drop'
             targetPath: '$(Pipeline.Workspace)/drop'
+ 
+       - task: KubernetesManifest@0
+         inputs:
+              action: 'createSecret'
+              kubernetesServiceConnection: 'Cluster_connection'
+              namespace: 'default'
+              secretType: 'dockerRegistry'
+              secretName: '$(acrsecret)'
+              dockerRegistryEndpoint: 'myacrtest0901'
+
+       - task: KubernetesManifest@0
+         inputs:
+            action: 'deploy'
+            kubernetesServiceConnection: 'Cluster_connection'
+            namespace: 'default'
+            manifests: $(Pipeline.Workspace)/drop/deployment.yml   
          
 
