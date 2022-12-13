@@ -42,14 +42,19 @@ stages:
         publishLocation: 'pipeline'
 
 
-# - stage: Deploy
-#   displayName: Deploy to AkS
-#   dependsOn: Build
-#   jobs:
-#     - job: Deploy 
-#       displayName: Deploy to AKS
-#       pool:
-#         vmImage:  $(vmImageName)  
-   
+- stage: Deploy
+  displayName: Deploy to AkS
+  dependsOn: Build
+  jobs:
+    - job: Deploy 
+      displayName: Deploy to AKS
+      pool:
+        vmImage:  $(vmImageName)  
+      steps:
+       - task: DownloadPipelineArtifact@2
+         inputs:
+            buildType: 'current'
+            artifactName: 'drop'
+            targetPath: '$(Pipeline.Workspace)/drop'
          
 
