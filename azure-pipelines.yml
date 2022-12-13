@@ -68,7 +68,8 @@ stages:
            secretType: 'dockerRegistry'
            secretName: k8exampleacrauth
            dockerRegistryEndpoint: 'Docker_connection'
-
+           
+         
        - task: KubernetesManifest@0
          inputs:
             action: 'deploy'
