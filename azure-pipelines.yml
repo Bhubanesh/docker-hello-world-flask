@@ -74,6 +74,6 @@ stages:
             action: 'deploy'
             kubernetesServiceConnection: 'Cluster_connection'
             namespace: 'default'
-            manifests: $(Pipeline.Workspace)/drop/deployment.yml   
+            manifests: $(Pipeline.Workspace)/drop/deployment.yml
          
 
