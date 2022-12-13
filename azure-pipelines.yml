@@ -37,7 +37,7 @@ stages:
   displayName: Deploy to dev
   dependsOn: build
   variables:
-     acrsecret: docker_registry_connectionauth
+     acrsecret: K8RegistryConnectionauth
   jobs: 
     - job: Depoy
       displayName: Deplot to AKS
@@ -56,7 +56,7 @@ stages:
              namespace: 'default'
              secretType: 'dockerRegistry'
              secretName: '$(acrsecret)'
-             dockerRegistryEndpoint: 'docker_registry_connection'
+             dockerRegistryEndpoint: 'K8RegistryConnection'
          - task: KubernetesManifest@0
            inputs:
              action: 'deploy'
