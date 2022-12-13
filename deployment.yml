@@ -10,18 +10,16 @@ spec:
   selector:
     matchlabels:
       app: simpleapp
-  ports:
-    - port: 80
   template:
     metadata:
       labels:
         app: simpleapp
     spec:
       containers:
-        - name: simplaeapp-container
-          image: ngnix:latest
-          ports:
-            - containerPort: 8080
+      - name: simplaeapp-container
+        image: ngnix:latest
+        ports:
+        - containerPort: 8080
 
 ---
 apiVersion: v1
