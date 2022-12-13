@@ -5,7 +5,7 @@ resources:
 - repo: self
 
 variables:
-  imageRepo: pythonappTest
+  imageRepo: pythonapptest
   tag: '$(Build.BuildId)'
 
 stages:
