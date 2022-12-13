@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simpleapp-4
+  name: simpleapp-5
   labels:
-    app: simpleapp
+    app: simpleapps
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: simpleapp
+      app: simpleapps
   template:
     metadata:
       labels:
-        app: simpleapp
+        app: simpleapps
     spec:
       containers:
       - name: simplaeapp-container
@@ -28,7 +28,7 @@ kind: Service
 metadata:
   name: k8-service
   labels:
-    app: simpleapp
+    app: simpleapps
 spec:
   ports:
   - name: http
@@ -37,5 +37,5 @@ spec:
     targetPort: 8080
   type: LoadBalancer
   selector:
-    app: simpleapp
+    app: simpleapps
 
