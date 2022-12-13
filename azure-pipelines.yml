@@ -1,0 +1,50 @@
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  imageRepo: pythonapp
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        containerRegistry: 'myacrtest0901'
+        repository: '$(imageRepo)'
+        command: 'buildAndPush'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        tags: |
+          $(tag)
+          latest
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)/s'
+        artifact: 'drop'
+        publishLocation: 'pipeline'
+
+# - stage: Deploy
+#   displayName: Deploy to dev
+#   dependsOn: build
+#   jobs: 
+#     - job: Depoy
+#       displayName: Deplot to AKS
+#       pool: 
+#         vmimage: ubuntu-latest
+#       steps: 
+#          - task: DownloadPipelineArtifact@2
+#            inputs:
+#              buildType: 'current'
+#              artifactName: 'drop'
+#              targetPath: '$(Pipeline.Workspace)/drop'
+         
