@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: simplaeapp-container
-    image: myacrtest0901.azurecr.io/myacrtest0901/bhubaneshdockerhelloworldflask:latest
+    image: myacrtest0901.azurecr.io/myacrtest0901/pythonapp:latest
     ports:
       - containerPort: 8080
 
