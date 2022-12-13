@@ -5,7 +5,7 @@ metadata:
   name: MyPod
   labels:
     app: simplaeapp
-specs:
+spec:
   containers:
   - name: simplaeapp-container
     image: myacrtest0901.azurecr.io/simpleapp
