@@ -1,15 +1,41 @@
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: my-pod
+  name: simpleapp-1
   labels:
     app: simplaeapp
 spec:
-  containers:
-  - name: simplaeapp-container
-    image: nginx:latest
-    ports:
-      - containerPort: 8080
+  replicaset: 3
+  selector:
+    matchlabels:
+      app: simpleapp
+  ports:
+    - port: 80
+  template:
+    metadata:
+      labels:
+        app: simpleapp
+    spec:
+      containers:
+        - name: simplaeapp-container
+          image: ngnix:latest
+          ports:
+            - containerPort: 8080
 
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: simpleapp
+spec:
+  type: loadbalancer
+  ports:
+    - name: https
+      port: 80
+      protocol: tcp
+      targetPort: 8080
+      selector:
+        matchlabels:
+          app: simplaeapp
