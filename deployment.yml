@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: myPod
+  name: my-Pod
   labels:
     app: simplaeapp
 spec:
